@@ -1,0 +1,19 @@
+{
+    // 通用格式化设置
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "golang.go",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+
+    // Go语言特定设置
+    "go.useLanguageServer": true,
+    "go.formatTool": "goimports",
+    "gopls": {
+        "analyses": {
+            "unusedparams": true,
+            "shadow": true
+        },
+        "staticcheck": true
+    }
+}
