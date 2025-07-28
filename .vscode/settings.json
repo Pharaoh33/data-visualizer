@@ -1,12 +1,15 @@
 {
-    // 通用格式化设置
-    "editor.formatOnSave": true,
+    // 通用格式化设置，关闭保存时自动格式化
+    "editor.formatOnSave": false,
     "editor.defaultFormatter": "golang.go",
     "editor.codeActionsOnSave": {
-        "source.organizeImports": true
+        // 关闭保存时自动组织导入（这是常见的“自动修复”项之一 ）
+        "source.organizeImports": false
     },
 
-    // Go语言特定设置
+    // Go 语言特定设置，这里即便用 goimports 做格式化工具，
+    // 但因为上面 editor.formatOnSave 为 false 且 organizeImports 为 false，
+    // 保存时也不会触发 goimports 去格式化和组织导入了
     "go.useLanguageServer": true,
     "go.formatTool": "goimports",
     "gopls": {
