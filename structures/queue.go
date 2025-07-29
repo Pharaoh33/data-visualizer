@@ -26,7 +26,7 @@ func (q *Queue) Dequeue() (int, error) { //出队
 	}
 	value := q.data[q.front] //获取队头元素
 	q.data = q.data[1:]      //将队头元素弹出
-	if q.size != 0 {
+	if q.rear != 0 {
 		q.rear--
 	}
 	q.size--          //实际大小减1

@@ -23,7 +23,7 @@ func (a *Array) Insert(index, value int) error {
 	if a.size == a.capacity {
 		return fmt.Errorf("array is full") //返回数组已满
 	}
-	if index < 0 || index > a.size {
+	if index < 0 || index > a.capacity {
 		return fmt.Errorf("index out of range") //返回索引超出范围
 	}
 	for i := a.size - 1; i >= index; i-- { //从后往前遍历
@@ -35,7 +35,7 @@ func (a *Array) Insert(index, value int) error {
 }
 
 func (a *Array) Delete(index int) error {
-	if index < 0 || index >= a.size {
+	if index < 0 || index >= a.capacity {
 		return fmt.Errorf("index out of range") //返回索引超出范围
 	}
 	for i := index; i < a.size-1; i++ { //从前往后遍历
@@ -46,14 +46,14 @@ func (a *Array) Delete(index int) error {
 }
 
 func (a *Array) Get(index int) (int, error) {
-	if index < 0 || index >= a.size {
+	if index < 0 || index >= a.capacity {
 		return 0, fmt.Errorf("index out of range") //返回索引超出范围
 	}
 	return a.data[index], nil //返回元素
 }
 
 func (a *Array) Set(index, value int) error {
-	if index < 0 || index >= a.size {
+	if index < 0 || index >= a.capacity {
 		return fmt.Errorf("index out of range") //返回索引超出范围
 	}
 	a.data[index] = value //将元素设置为value
@@ -61,7 +61,7 @@ func (a *Array) Set(index, value int) error {
 }
 
 func (a *Array) Find(value int) int {
-	for i := 0; i < a.size; i++ { //从前往后遍历
+	for i := 0; i < a.capacity; i++ { //从前往后遍历
 		if a.data[i] == value { //如果元素等于value
 			return i //返回索引
 		}

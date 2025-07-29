@@ -42,16 +42,18 @@ func Run() {
 		switch choice {
 		case 1:
 			fmt.Println("您选择了数组 (Array)")
-			// TODO: 调用数组可视化逻辑
+			RunArrayUI() // 调用数组UI
 		case 2:
 			fmt.Println("您选择了链表 (LinkedList)")
-			// TODO: 调用链表可视化逻辑
+			RunLinkedListUI() // 调用链表UI
+		// 在case 3和case 4中添加以下代码
 		case 3:
-			fmt.Println("您选择了栈 (Stack)")
-			// TODO: 调用栈可视化逻辑
+		    fmt.Println("您选择了栈 (Stack)")
+		    RunStackUI() // 调用栈UI
 		case 4:
-			fmt.Println("您选择了队列 (Queue)")
-			// TODO: 调用队列可视化逻辑
+		    fmt.Println("您选择了队列 (Queue)")
+		    RunQueueUI() // 调用队列UI
+
 		case 5:
 			fmt.Println("退出程序，再见！")
 			return
