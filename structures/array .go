@@ -38,9 +38,10 @@ func (a *Array) Delete(index int) error {
 	if index < 0 || index >= a.capacity {
 		return fmt.Errorf("index out of range") //返回索引超出范围
 	}
-	for i := index; i < a.size-1; i++ { //从前往后遍历
-		a.data[i] = a.data[i+1] //将元素向前移动
-	}
+	// for i := index; i < a.size-1; i++ { //从前往后遍历
+	// 	a.data[i] = a.data[i+1] //将元素向前移动
+	// }
+	a.data[index] = 0
 	a.size--   //实际大小减1
 	return nil //返回nil
 }
@@ -70,65 +71,22 @@ func (a *Array) Find(value int) int {
 }
 
 func (a *Array) Display() string {
-	var topBorder strings.Builder
-	var dataLine strings.Builder
-	var bottomBorder strings.Builder
-	// var indexLine strings.Builder
-
-	// 构建顶部边框
-	topBorder.WriteString("┌")
+	var result strings.Builder
 	for i := 0; i < a.capacity; i++ {
-		if i < a.capacity-1 {
-			topBorder.WriteString("─────┬")
-		} else {
-			// 最后一个位置直接拼接 ┐
-			topBorder.WriteString("─────┐")
-		}
+		val, _ := a.Get(i)
+		result.WriteString(fmt.Sprintf("[%d]", val))
 	}
-	topBorder.WriteString("\n")
-
-	// 构建数据行
-	dataLine.WriteString("│")
+	result.WriteString("\n")
 	for i := 0; i < a.capacity; i++ {
-		if i < a.size {
-			dataLine.WriteString(fmt.Sprintf("  %d  │", a.data[i]))
-		} else {
-			dataLine.WriteString("     │")
-		}
+		result.WriteString(fmt.Sprintf(" %d ", i))
 	}
-	dataLine.WriteString("\n")
-
-	// 构建底部边框
-	bottomBorder.WriteString("└")
-	for i := 0; i < a.capacity; i++ {
-		if i < a.capacity-1 {
-			bottomBorder.WriteString("─────┴")
-		} else {
-			// 最后一个位置直接拼接 ┘
-			bottomBorder.WriteString("─────┘")
-		}
-	}
-	bottomBorder.WriteString("\n")
-
-	indexLine := "  "
-	for i := 0; i < a.capacity; i++ {
-		// 每个索引的起始位置 = 2（左侧空格） + i*6（每个单元格占6个字符）
-		startPos := 2 + i*6
-		// 填充空格到起始位置
-		indexLine += strings.Repeat(" ", startPos-len(indexLine))
-		// 添加索引
-		indexLine += fmt.Sprintf("[%d]", i)
-	}
-
-	// // 构建索引行
-	// for i := 0; i < a.capacity; i++ {
-	// 	indexLine.WriteString(fmt.Sprintf("[%d]   ", i))
-	// }
-
-	// 合并所有部分
-	return topBorder.String() + dataLine.String() + bottomBorder.String() + indexLine
+	return result.String()
 }
 
 func (a *Array) Size() int {
 	return a.size //返回实际大小
+}
+
+func (a *Array) Capacity() int {
+	return a.capacity //返回容量
 }

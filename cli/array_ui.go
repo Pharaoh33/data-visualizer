@@ -2,7 +2,8 @@ package cli
 
 import (
 	"bufio"
-	"data-visualizer/structures" // 假设数组结构在这个包中
+	"data-visualizer/structures"
+	"data-visualizer/visualizer"
 	"fmt"
 	"os"
 	"strconv"
@@ -56,23 +57,27 @@ func RunArrayUI() {
 			fmt.Print("请输入插入值: ")
 			scanner.Scan()
 			value, _ := strconv.Atoi(strings.TrimSpace(scanner.Text()))
-			err = arr.Insert(index, value)
-			if err != nil {
-				fmt.Printf("插入失败: %v\n", err)
-				continue
-			}
-			fmt.Printf("已在索引 %d 插入值 %d\n", index, value)
+			fmt.Println("\n可视化过程:")
+			fmt.Println(visualizer.VisualizeArrayInsert(arr, index, value))
+			// err = arr.Insert(index, value)
+			// if err != nil {
+			// 	fmt.Printf("插入失败: %v\n", err)
+			// 	continue
+			// }
+			// fmt.Printf("已在索引 %d 插入值 %d\n", index, value)
 		case 2:
 			// 删除操作
 			fmt.Print("请输入删除索引: ")
 			scanner.Scan()
 			index, _ := strconv.Atoi(strings.TrimSpace(scanner.Text()))
-			err := arr.Delete(index)
-			if err != nil {
-				fmt.Printf("删除失败: %v\n", err)
-				continue
-			}
-			fmt.Printf("已删除索引 %d 的元素\n", index)
+			fmt.Println("\n可视化过程:")
+			fmt.Println(visualizer.VisualizeArrayDelete(arr, index))
+			// err := arr.Delete(index)
+			// if err != nil {
+			// 	fmt.Printf("删除失败: %v\n", err)
+			// 	continue
+			// }
+			// fmt.Printf("已删除索引 %d 的元素\n", index)
 		case 3:
 			// 查找操作
 			fmt.Print("请输入查找值: ")

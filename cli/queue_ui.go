@@ -2,11 +2,12 @@ package cli
 
 import (
 	"bufio"
+	"data-visualizer/structures"
+	"data-visualizer/visualizer"
 	"fmt"
 	"os"
 	"strconv"
 	"strings"
-	"data-visualizer/structures"
 )
 
 // ShowQueueMenu 显示队列操作菜单
@@ -26,14 +27,14 @@ func ShowQueueMenu() {
 func RunQueueUI() {
 	scanner := bufio.NewScanner(os.Stdin)
 	queue := structures.Queue{} // 初始化队列
-	
+
 	for {
 		// 显示当前队列状态
 		fmt.Println("当前队列:", queue.Display())
 		fmt.Println()
-		
+
 		ShowQueueMenu()
-		
+
 		// 读取用户输入
 		scanner.Scan()
 		input := strings.TrimSpace(scanner.Text())
@@ -42,18 +43,22 @@ func RunQueueUI() {
 			fmt.Println("无效输入，请输入数字 1-5")
 			continue
 		}
-		
+
 		// 使用switch处理队列操作选择
 		switch choice {
+		// 入队操作
 		case 1:
-			// 入队操作
 			fmt.Print("请输入入队值: ")
 			scanner.Scan()
 			value, _ := strconv.Atoi(strings.TrimSpace(scanner.Text()))
+			fmt.Println("\n可视化过程:")
+			fmt.Println(visualizer.VisualizeQueueEnqueue(&queue, value))
 			queue.Enqueue(value)
 			fmt.Printf("已入队值 %d\n", value)
+		// 出队操作
 		case 2:
-			// 出队操作
+			fmt.Println("\n可视化过程:")
+			fmt.Println(visualizer.VisualizeQueueDequeue(&queue))
 			value, err := queue.Dequeue()
 			if err != nil {
 				fmt.Println("出队失败:", err)
@@ -79,7 +84,7 @@ func RunQueueUI() {
 		default:
 			fmt.Println("无效选择，请输入 1-5 之间的数字")
 		}
-		
+
 		fmt.Println("\n按回车键继续...")
 		scanner.Scan()
 		fmt.Print("\033[H\033[2J") // 清屏

@@ -3,8 +3,7 @@
     "editor.formatOnSave": false,
     "editor.defaultFormatter": "golang.go",
     "editor.codeActionsOnSave": {
-        // 关闭保存时自动组织导入（这是常见的“自动修复”项之一 ）
-        "source.organizeImports": false
+        "source.organizeImports": "never"
     },
 
     // Go 语言特定设置，这里即便用 goimports 做格式化工具，

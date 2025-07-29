@@ -48,11 +48,11 @@ func Run() {
 			RunLinkedListUI() // 调用链表UI
 		// 在case 3和case 4中添加以下代码
 		case 3:
-		    fmt.Println("您选择了栈 (Stack)")
-		    RunStackUI() // 调用栈UI
+			fmt.Println("您选择了栈 (Stack)")
+			RunStackUI() // 调用栈UI
 		case 4:
-		    fmt.Println("您选择了队列 (Queue)")
-		    RunQueueUI() // 调用队列UI
+			fmt.Println("您选择了队列 (Queue)")
+			RunQueueUI() // 调用队列UI
 
 		case 5:
 			fmt.Println("退出程序，再见！")
